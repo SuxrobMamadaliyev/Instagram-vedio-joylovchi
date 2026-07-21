@@ -26,7 +26,9 @@ async function main() {
   await mongoose.connect(MONGO_URI);
   console.log('✅ MongoDB ulandi');
 
-  await bot.launch();
+  // MUHIM: bot.launch() long-polling rejimida hech qachon resolve bo'lmaydi,
+  // shuning uchun uni await qilmaymiz - aks holda server porti ochilmay qoladi
+  bot.launch();
   console.log('✅ Telegram bot ishga tushdi');
 
   startScheduler(bot);
